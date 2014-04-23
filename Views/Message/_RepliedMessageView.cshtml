@@ -1,11 +1,11 @@
 ﻿@model ReliMobileAdmin.Models.Message
 <li>
     <div class="author backgroundColor blue author-reply">
-        <i class="icon icon-upload-alt white"></i>
+        <i class="icon icon-user white"></i>
     </div>
     <div class="name">姓名 (@Model.SendFromUserName) - 部门</div>
     <div class="date">@Model.createdAt</div>
-    <div class="delete"><a data-ajax="true" data-ajax-method="DELETE" data-ajax-success="Delete(@Model.messageId)" onclick="return confirm('are you sure')" href="/Message/Delete?messageId=@Model.messageId">
+    <div class="delete"><a data-ajax="true" data-id="@Model.messageId">
                                 <i class='icon-remove'></i> 
                             </a></div>
     <div class="message">
