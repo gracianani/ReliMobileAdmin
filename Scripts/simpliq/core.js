@@ -37,18 +37,7 @@ jQuery(document).ready(function($){
     $('textarea').autosize();   
 });
 
-/* ---------- Delete Comment ---------- */
-jQuery(document).ready(function($){
-    $('.discussions').find('.delete').click(function(){
-		
-		$(this).parent().fadeTo("slow", 0.00, function(){ //fade
-			$(this).slideUp("slow", function() { //slide up
-		    	$(this).remove(); //then remove from the DOM
-		    });
-		});
-	
-	});
-});
+
 
 /* ---------- IE8 list style hack (:nth-child(odd)) ---------- */
 jQuery(document).ready(function($){
