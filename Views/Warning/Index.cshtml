@@ -11,9 +11,14 @@
     <h2>全部预警信息</h2>
     </div>
     <div class="row-fluid">
-        <div class="discussions">
-            <div class="span12">
-            <table class="table">
+        <div class="box backgroundColor white">
+            <table class="table table-bordered">
+				<thead>
+				<th>预警时间</th>
+				<th>标题</th>
+				<th>内容</th>
+				</thead>
+				<tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -22,8 +27,8 @@
                         <td>@item.warningContent</td>
                     </tr>
                 }
+				</tbody>
             </table>
-            </div>
         </div>
     </div>
 </div>
