@@ -1,0 +1,95 @@
+﻿@model ReliMobileAdmin.Models.MessageViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row-fluid">
+    <div class="row-fluid">
+    <h2>全部消息</h2>
+    </div>
+    <div class="row-fluid">
+        <div class="discussions">
+            <div class="span12">
+            <ul>
+                @foreach (var item in Model.Messages)
+                {
+                    <li>
+                        <div class="author">
+                            <img src="/Content/images/avatar.jpg" />
+                        </div>
+                        <div class="name">@item.SendFromUserName</div>
+                        <div class="date">@item.createdAt</div>
+                        <div class="delete">
+                            <a data-ajax="true" data-ajax-method="DELETE" data-ajax-success="Delete(@item.messageId)" onclick="return confirm('are you sure')" href="/Message/Delete?messageId=@item.messageId">
+                                <i class='icon-remove'></i> 
+                            </a>
+                        
+                        </div>
+                        <div class="message">
+                            @item.messageContent
+                            @if (item.hasImage)
+                            {
+                                <div class="row-fluid">
+                                    <div class="span2">
+                                        <img class="img-thumbnail" src='@item.imageUrl' />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                            
+                        <ul id="ul-@item.messageId">
+                            @foreach (var repliedByMessage in item.RepliedByMessages)
+                            {
+                                Html.RenderPartial("_RepliedMessageView", @repliedByMessage);
+                            }
+                            
+                            <li id="ul-replyForm-@item.messageId" class="replyForm">
+                                <label >快速回复</label>
+                                @using (Ajax.BeginForm("ReplyMessage",
+                                    new { replyToMessageId = @item.messageId },
+                                    new AjaxOptions { 
+                                        HttpMethod = "POST", 
+                                        InsertionMode= System.Web.Mvc.Ajax.InsertionMode.InsertBefore, 
+                                        UpdateTargetId="ul-"+@item.messageId, 
+                                        OnSuccess="Success("+@item.messageId+")"}))
+                                {
+                                    <textarea class="diss-form" name="messageContent" placeholder="回复信息"></textarea>
+                                    <input type="submit" value="发送" class="btn" />
+                                }
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+<div class="row-fluid">
+<div class="pagination pagination-centered">
+    <ul>
+        @for (int i = 0; i < Model.TotalPages; i++)
+        {
+            <li @if (Model.PageIndex == i){ <text>class="active"</text> } >
+
+                @Html.ActionLink((i + 1).ToString(), "Index", new
+                {
+                    pageIndex = i
+                })
+            </li>
+        }
+    </ul>
+</div>
+</div>
+<script>
+    var messageId;
+
+    function Success(msg) {
+        var messageId=
+        $("#ul-" + msg.messageId).append($newLi);
+    }
+</script>

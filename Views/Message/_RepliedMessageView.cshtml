@@ -1,0 +1,14 @@
+﻿@model ReliMobileAdmin.Models.Message
+<li>
+    <div class="author">
+        <img src="/Content/images/avatar.jpg" />
+    </div>
+    <div class="name">@Model.SendFromUserName</div>
+    <div class="date">@Model.createdAt</div>
+    <div class="delete"><a data-ajax="true" data-ajax-method="DELETE" data-ajax-success="Delete(@Model.messageId)" onclick="return confirm('are you sure')" href="/Message/Delete?messageId=@Model.messageId">
+                                <i class='icon-remove'></i> 
+                            </a></div>
+    <div class="message">
+        @Model.messageContent
+    </div>
+</li>

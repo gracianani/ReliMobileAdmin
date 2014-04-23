@@ -1,0 +1,24 @@
+﻿@model ReliMobileAdmin.Models.HomeViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row-fluid">
+    <div class="span12">
+		<div class="row-fluid">
+			<div class="smallstat box span6">
+				<i class="icon-user orange"></i>
+				<span class="title"> 新消息 </span>
+				<span class="value"> @Model.NumOfNewMessage </span>
+			</div><!--box-->
+			<div class=" smallstat box span6 " >
+				<i class="icon-fire crimson"></i>
+				<span class="title">  预警信息 </span>
+				<span class="value highlightRed">  @Model.NumOfWarningMessages </span>
+			</div>
+		</div>
+	</div>
+
+    
+</div>

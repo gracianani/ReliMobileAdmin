@@ -1,0 +1,45 @@
+﻿@model ReliMobileAdmin.Models.MessageViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row-fluid">
+    <div class="row-fluid">
+    <h2>编辑新消息</h2>
+    </div>
+    <div class="row-fluid">
+        <div class="box span12">
+            <div class="box-header">
+                <h2><i class="icon-edit"></i> 发送新消息 </h2>
+            </div>
+
+            <div class="box-content">
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label"> 请选择联系人 </label>
+                        <div class="controls">
+                            <select>
+                                <option>
+                                    zhao
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label"> 消息内容 </label>
+                        <div class="controls">
+                            <textarea class="diss-form" placeholder="在这里编辑" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 40px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">发送</button>
+                        <button class="btn">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>
