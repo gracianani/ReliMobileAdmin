@@ -1,4 +1,4 @@
-﻿@model ReliMobileAdmin.Models.MessageViewModel
+﻿@model ReliMobileAdmin.Models.CreateMessageViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -14,30 +14,38 @@
             <div class="box-header">
                 <h2><i class="icon-edit"></i> 发送新消息 </h2>
             </div>
-
             <div class="box-content">
-                <form class="form-horizontal">
+            
+                @if (Model.IsCreated.HasValue)
+                {
+                    <div class="bs-callout bs-callout-danger">
+                        <h4>消息已发送</h4>
+                    </div>
+                }
+                @Html.ValidationSummary()
+                
+
+                @using (Html.BeginForm("Create", "Message", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
                     <div class="control-group">
                         <label class="control-label"> 请选择联系人 </label>
                         <div class="controls">
-                            <select>
-                                <option>
-                                    zhao
-                                </option>
-                            </select>
+                            @Html.DropDownListFor(m => m.SelectedUserId, new SelectList(Model.Users, "UserId", "UserName"), "请选择联系人")
+                            @Html.ValidationMessageFor(m => m.SelectedUserId)
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label"> 消息内容 </label>
                         <div class="controls">
-                            <textarea class="diss-form" placeholder="在这里编辑" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 40px;"></textarea>
+                            @Html.TextAreaFor(m => m.Message, new { placeholder = "在这里编辑", @class = "diss-form", @style = "overflow:hidden;word-wrap:break-word;resize:horizontal;height:40px" })
+                            @Html.ValidationMessageFor(m => m.Message)
                         </div>
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary">发送</button>
-                        <button class="btn">取消</button>
+                        @Html.ActionLink("返回消息列表", "Index", "", new {@class="btn"})
                     </div>
-                </form>
+                }
             </div>
         </div>
     </div>
