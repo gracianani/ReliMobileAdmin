@@ -16,9 +16,9 @@
             
                 @if (Model.IsCreated.HasValue)
                 {
-                    <div class="bs-callout bs-callout-danger">
-                        <h4>消息已发送</h4>
-                    </div>
+                    <p class="bs-callout bs-callout-danger bg-success">
+                        消息已发送
+                    </p>
                 }
                 @Html.ValidationSummary()
                 
@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-actions">
 						<button type="submit" class="btn btn-primary btn-large span2">发送</button>
-                        @Html.ActionLink("返回消息列表", "Index", "", new {@class="btn  btn-large btn-inverse span2"})
+                        @Html.ActionLink("返回消息列表", "Index", "", new {@class="btn  btn-large btn-inverse span3"})
                     </div>
                 }
             </div>

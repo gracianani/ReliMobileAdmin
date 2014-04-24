@@ -3,9 +3,9 @@
     <div class="author backgroundColor blue author-reply">
         <i class="icon icon-user white"></i>
     </div>
-    <div class="name">姓名 (@Model.SendFromUserName) - 部门</div>
+    <div class="name">姓名 (@Model.SendFromUserName) - @Model.SendToUser_Department</div>
     <div class="date">@Model.createdAt</div>
-    <div class="delete"><a data-ajax="true" data-id="@Model.messageId">
+    <div class="delete" data-id="@Model.messageId"><a data-ajax="true" data-id="@Model.messageId">
                                 <i class='icon-remove'></i> 
                             </a></div>
     <div class="message">

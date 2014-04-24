@@ -34,7 +34,7 @@
                 @foreach (var item in Model.Messages)
                 {
                     <li>
-						@if ( true)
+						@if ( @item.RepliedByMessages.Count() > 0)
 						{
                         <div class="author backgroundColor darkGreen">
                             <i class="icon-ok white"></i>
@@ -44,9 +44,9 @@
                             <i class="icon-envelope-alt white"></i>
                         </div>
 						}
-                        <div class="name">姓名（@item.SendFromUserName） - 归属部门</div>
+                        <div class="name">姓名（@item.SendFromUserName） - @item.SendToUser_Department</div>
                         <div class="date">@item.createdAt</div>
-                        <div class="delete">
+                        <div class="delete" data-id="@item.messageId">
                             <a data-id="@item.messageId">
                                 <i class='icon-remove'></i> 
                             </a>
@@ -76,8 +76,8 @@
                                     new { replyToMessageId = @item.messageId },
                                     new AjaxOptions { 
                                         HttpMethod = "POST", 
-                                        InsertionMode= System.Web.Mvc.Ajax.InsertionMode.InsertBefore, 
-                                        UpdateTargetId="ul-"+@item.messageId, 
+                                        InsertionMode= System.Web.Mvc.Ajax.InsertionMode.InsertBefore,
+                                        UpdateTargetId = "ul-replyForm-" + @item.messageId, 
                                         OnSuccess="Success("+@item.messageId+")"}))
                                 {
                                     <textarea class="diss-form" name="messageContent" placeholder="回复信息"></textarea>
@@ -119,27 +119,29 @@
     }
 
 	/* ---------- Delete Comment ---------- */
-	jQuery(document).ready(function($){
-		$('.discussions').find('.delete').click(function(){
-			var id = $(this).attr("data-id");
-			var self = this;
-			if ( confirm('are you sure') ) {
-				$.ajax({
-					url:"/Message/Delete?messageId=" + id,
-					success: function(data){
-						$(self).parent().fadeTo("slow", 0.00, function(){
-							$(this).slideUp("slow", function() {
-		    					$(this).remove();
-							});
-						});
-					},
-					error: function() {
-						alert("error");
-					}
-				});
-				
-			}
-	
-		});
-	});
+    jQuery(document).ready(function ($) {
+        $('.discussions').find('.delete').click(function () {
+            var id = $(this).attr("data-id");
+            var self = this;
+            if (confirm('确定要删除这条信息吗？')) {
+                $.ajax({
+                    url: "/Message/Delete",
+                    data: { "messageId": id },
+                    method:"DELETE",
+                    success: function (data) {
+                        $(self).parent().fadeTo("slow", 0.00, function () {
+                            $(this).slideUp("slow", function () {
+                                $(this).remove();
+                            });
+                        });
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+
+            }
+
+        });
+    });
 </script>
