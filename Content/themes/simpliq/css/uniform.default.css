@@ -189,9 +189,10 @@ div.radio {
 
 /* Uploader */
 div.uploader {
-  background-position: 0 -297px;
+  background:#FFF;
+  border:1px solid #efefef;
   height: 28px;
-  width: 190px;
+  width: 290px;
   cursor: pointer;
   position: relative;
   overflow: hidden; }

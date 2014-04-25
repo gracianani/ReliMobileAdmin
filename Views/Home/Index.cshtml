@@ -7,50 +7,107 @@
 <div class="row-fluid">
     <div class="span12">
 		<div class="row-fluid">
-			<div class="smallstat box span6">
-				<i class="icon-user orange"></i>
+			<a class="smallstat box span6" href="/Message/Index">
+				<i class="icon-envelope-alt orange"></i>
 				<span class="title"> 新消息 </span>
 				<span class="value"> @Model.NumOfNewMessage </span>
-			</div><!--box-->
-			<div class=" smallstat box span6 " >
-				<i class="icon-fire crimson"></i>
+			</a><!--box-->
+			<a class=" smallstat box span6 " href="/Warning/Index" >
+				<i class="icon-bullhorn crimson"></i>
 				<span class="title">  预警信息 </span>
-				<span class="value highlightRed">  @Model.NumOfWarningMessages </span>
-			</div>
+				<span class="value">  @Model.NumOfWarningMessages </span>
+			</a>
 		</div>
 	</div>
-
-    
 </div>
 
-<div class="row-fluid">	
-				<div class="box span12">
-					<div class="box-header">
-						<h2><i class="icon-hand-up"></i>Quick Buttons</h2>
-					</div>
-					<div class="box-content">
-						
-						<a class="quick-button span3">
-							<i class="icon-envelope"></i>
-							<p>新消息</p>
-							<span class="notification red">@Model.NumOfNewMessage</span>
-						</a>
-						<a class="quick-button span3">
-							<i class="icon-fire"></i>
-							<p>预警信息</p>
-							<span class="notification blue">@Model.NumOfWarningMessages</span>
-						</a>
-						<a class="quick-button span3">
-							<i class="icon-envelope"></i>
-							<p>Messages</p>
-						</a>
-						<a class="quick-button span3">
-							<i class="icon-calendar"></i>
-							<p>Calendar</p>
-							<span class="notification red">68</span>
-						</a>
-						<div class="clearfix"></div>
-					</div>	
-				</div><!--/span-->
-				
-			</div><!--/row-->
+<div class="row-fluid">
+    <div class="span12">
+		<div class="row-fluid">
+			<a class="smallstat box span6"  href="/DailyReport/ProductionReport">
+				<i class="icon-table blue"></i>
+				<span class="title"> 最新生产日报 </span>
+				<span class="value"> 2014-03-05 </span>
+			</a><!--box-->
+			<a class=" smallstat box span6 "  href="/DailyReport/CustomerReport">
+				<i class="icon-table blue"></i>
+				<span class="title">  最新客服日报 </span>
+				<span class="value"> 2014-03-05 </span>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+
+	<div class="box span6">
+            <div class="box-header">
+                <h2><i class="icon-edit"></i> 发送消息 </h2>
+            </div>
+            <div class="box-content">
+            
+                @if (false)
+                {
+                    <p class="bs-callout bs-callout-danger bg-success">
+                        消息已发送
+                    </p>
+                }
+                @Html.ValidationSummary()
+                
+
+                @using (Html.BeginForm("Create", "Message", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="control-group">
+                        <label class="control-label"> 请选择联系人 </label>
+                        <div class="controls">
+
+                           
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label"> 消息内容 </label>
+                        <div class="controls">
+							<textarea class="diss-form span11" rows="8" placeholder="请输入您要发送的信息"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="form-actions">
+						<button type="submit" class="btn btn-primary btn-large span4">发送</button>
+                    </div>
+                }
+            </div>
+        </div>
+
+		<div class="box span6">
+            <div class="box-header">
+                <h2><i class="icon-edit"></i> 发布预警 </h2>
+            </div>
+            <div class="box-content">
+            
+                @if (false)
+                {
+                    <p class="bs-callout bs-callout-danger bg-success">
+                        消息已发送
+                    </p>
+                }
+                @Html.ValidationSummary()
+                
+
+                @using (Html.BeginForm("Create", "Message", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="control-group">
+                        <label class="control-label"> 预警信息内容 </label>
+                        <div class="controls">
+							<textarea class="diss-form span11" rows="10" placeholder="请输入您要发送的信息"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="form-actions">
+						<button type="submit" class="btn btn-primary btn-large span4">发送</button>
+                    </div>
+                }
+            </div>
+        </div>
+
+</div>

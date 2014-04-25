@@ -5,11 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="../../Content/themes/simpliq/css/uploadify.css" rel="stylesheet" type="text/css" />
+<h1>知识库  @Html.Hidden("reportType", Model.ReportType)</h1>
 <div class="row-fluid">
-    <div class="span7">
-        <h1>知识库  @Html.Hidden("reportType", Model.ReportType)</h1>
+    <div class="span8">
         
-        <table class="table">
+        
+        <table class="table backgroundColor whtie table-bordered">
             <tr>
                 <th>
                    文件名
@@ -39,19 +40,12 @@
         </table>
     </div>
     <div class="span4">
-        <div class="message-view">
-            <div class="message">
-                <div class="header">
-                
-                </div>
-            </div> 
             <div class="form-group">
                 @using (Html.BeginForm("Upload", "", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <input type="file" name="file_upload" id="file_upload" multiple="true"/>
                 }
             </div>
-        </div>
     </div>
 </div>
 
@@ -59,7 +53,7 @@
     $(function () {
         $('#file_upload').uploadify({
             'swf': '../uploadify.swf',
-            'height': 40,
+            'height': 30,
             'buttonText': '上传文件',
             'uploader': '/DailyReport/Upload',
             'formData': { 'reportType': $("input[name=reportType]").val() },
