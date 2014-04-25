@@ -22,7 +22,7 @@
 				<tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr data-warningId="@item.warningId">
                         <td>@item.ReportedAt</td>
                         <td>@item.warningTitle</td>
                         <td>@item.warningContent</td>
@@ -35,3 +35,28 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".icon-trash, .btn-danger").click(function () {
+            var $self = $(this);
+            $.ajax({
+                url: '/Warning/Delete',
+                method: 'Delete',
+                contentType: 'application/json',
+                data: JSON.stringify({ "warningId": $self.parents('tr').attr("data-warningId") }),
+                success: function (data) {
+                    $self.parents('tr').fadeTo("slow", 0.00, function () {
+                        $(this).slideUp("slow", function () {
+                            $(this).remove();
+                        });
+                    });
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+    });
+
+</script>
